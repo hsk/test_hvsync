@@ -30,10 +30,10 @@ module test_hvsync_top(clk, reset, hsync, vsync, rgb);
   wire r = display_on & (((hpos&7)==0) | ((vpos&7)==0));
   wire g = display_on & vpos[4];
   wire b = display_on & hpos[4];
-  
+  wire l = r | g | b;
   // Concatenation operator merges the red, green, and blue signals
   // into a single 3-bit vector, which is assigned to the 'rgb'
   // output. The IDE expects this value in BGR order.
-  assign rgb = {b,g,r};
+  assign rgb = {l,l,l};
 
 endmodule
